@@ -1,0 +1,48 @@
+{% extends 'authenticate/base.html' %}
+
+{% block content %}
+<div style="margin-top: -5%;">
+	<!-- <img src="https://www.drugtargetreview.com/wp-content/uploads/COVID19-vaccine-3.jpg" alt=""> -->
+	<h1 style="padding-top: 10%;"> Welcome to Covid Vaccination site</h1>
+</div>
+
+
+{% if user.is_authenticated %}
+	<p>Name: {{user.first_name}} {{ user.last_name}}</p>
+	<p>Username: {{user.username}}</p>
+	
+	<p>Email: {{user.email}}</p>
+	{% if centers %}
+	
+	
+	<h3>Vaccination Centers</h3>
+	<div>
+		<table border="1px">
+			<tr>
+				<th style="padding: 5px;">S.No.</th>
+				<th style="padding: 5px;">Name</th>
+				<th style="padding: 5px;">Place</th>
+				<th style="padding: 5px;">Availability</th>
+			</tr>
+			{% for center in centers %}
+			<tr>
+				<td style="padding: 5px;">
+					{{center.id}}
+				</td>
+				<td style="padding: 5px;">
+					{{center.center_name}}
+				</td>
+				<td style="padding: 5px;">
+					{{center.place}}
+				</td>
+				<td style="padding: 5px;">
+					{{center.available}}
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+	</div>
+{% endif %}
+
+{% endblock %}
